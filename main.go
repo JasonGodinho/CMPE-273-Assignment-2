@@ -100,6 +100,7 @@ func Getlocations(rw http.ResponseWriter, req *http.Request, p httprouter.Params
 
 	fmt.Fprintf(rw, string(b2))
 	fmt.Println("Method Name: " + req.Method)
+	rw.WriteHeader(http.StatusOK)
 }
 
 func Postlocations(rw http.ResponseWriter, req *http.Request, p httprouter.Params) {
@@ -184,6 +185,7 @@ func Postlocations(rw http.ResponseWriter, req *http.Request, p httprouter.Param
 	b2, err := json.Marshal(result)
 	if err != nil {
 	}
+	rw.WriteHeader(http.StatusCreated)
 
 	fmt.Fprintf(rw, string(b2))
 }
@@ -281,6 +283,7 @@ func PutLocations(rw http.ResponseWriter, req *http.Request, p httprouter.Params
 	b2, err := json.Marshal(result)
 	if err != nil {
 	}
+	rw.WriteHeader(http.StatusCreated)
 
 	fmt.Fprintf(rw, string(b2))
 	fmt.Println("Method Name: " + req.Method)
@@ -304,6 +307,7 @@ func DeleteLocations(rw http.ResponseWriter, req *http.Request, p httprouter.Par
 	oid := bson.ObjectIdHex(id)
 	c.RemoveId(oid)
 	fmt.Fprintf(rw, "Deleted, %s!\n", p.ByName("name"))
+	rw.WriteHeader(http.StatusOK)
 }
 
 func main() {
